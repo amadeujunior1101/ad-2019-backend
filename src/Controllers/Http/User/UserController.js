@@ -67,9 +67,15 @@ module.exports = {
     try {
       await User.deleteMany({ _id: _id });
 
+      const users = await User.find();
+
       return res
         .status(200)
-        .json({ message: "user deleted successfully", error: false });
+        .json({
+          message: "user deleted successfully",
+          error: false,
+          info: users,
+        });
     } catch (error) {
       return res.status(400).json({ error: "deleted failed" });
     }
@@ -102,13 +108,11 @@ module.exports = {
 
       const users = await User.find();
 
-      return res
-        .status(200)
-        .json({
-          message: "Emails successfully sent",
-          error: false,
-          users: users,
-        });
+      return res.status(200).json({
+        message: "Emails successfully sent",
+        error: false,
+        users: users,
+      });
     } catch (error) {
       return res
         .status(400)
