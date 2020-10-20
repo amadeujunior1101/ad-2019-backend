@@ -3,6 +3,3 @@
 
 # environment
 .env
-
-# project 
-yarn.lock
